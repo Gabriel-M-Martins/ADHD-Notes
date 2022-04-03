@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, ViewPropTypes } from "react-native";
+import { TouchableOpacity, ViewPropTypes } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import propTypes from "prop-types";
 
