@@ -6,7 +6,7 @@ import Styles from "../styles/index";
 function Profile() {
   return (
     <View style={Styles.container}>
-      <Text>Tela inicial</Text>
+      <Text>Tela do perfil</Text>
     </View>
   );
 }

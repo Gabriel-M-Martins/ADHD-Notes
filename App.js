@@ -1,12 +1,10 @@
-import "react-native-gesture-handler";
 import React from "react";
-//import { EStatusBar } from "expo-status-bar";
-
-//import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+//import { StatusBar as EStatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer, useRoute } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 
 import {
   Home,
@@ -22,7 +20,7 @@ import {
 import setIcon from "./app/utils/SetIcon";
 
 const MainNav = createNativeStackNavigator();
-const TabsNav = createMaterialBottomTabNavigator();
+const HomeNav = createBottomTabNavigator();
 const NotesNav = createMaterialTopTabNavigator();
 const TasksNav = createMaterialTopTabNavigator();
 
@@ -62,27 +60,35 @@ function NotesTabs() {
 
 function HomeTabs() {
   return (
-    <TabsNav.Navigator
+    <HomeNav.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
+        headerShown: false,
+        lazy: false,
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "grey",
         tabBarIcon: ({ focused, color, size }) =>
           setIcon(route.name, focused, color, size),
       })}
     >
-      <TabsNav.Screen name="Notes" component={NotesTabs} />
-      <TabsNav.Screen name="Home" component={Home} />
-      <TabsNav.Screen name="Tasks" component={TasksTabs} />
-    </TabsNav.Navigator>
+      <HomeNav.Screen name="Notes" component={NotesTabs} />
+      <HomeNav.Screen name="Home" component={Home} />
+      <HomeNav.Screen name="Tasks" component={TasksTabs} />
+    </HomeNav.Navigator>
   );
 }
 
 function Main() {
   return (
     <MainNav.Navigator screenOptions={{ headerShown: false }}>
-      <MainNav.Screen name="Home" component={HomeTabs} />
+      <MainNav.Screen name="HomeTabs" component={HomeTabs} />
       <MainNav.Screen name="Profile" component={Profile} />
       <MainNav.Screen name="Settings" component={Settings} />
-      <MainNav.Screen name="OpenedDailyTask" component={OpenedDailyTask} />
+      <MainNav.Screen
+        name="OpenedDailyTask"
+        component={OpenedDailyTask}
+        options={{ headerShown: true, title: "Nova tarefa diária" }}
+      />
     </MainNav.Navigator>
   );
 }
@@ -94,3 +100,12 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
