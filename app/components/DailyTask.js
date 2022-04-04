@@ -6,7 +6,7 @@ import Line from "./Line";
 
 export default function DailyTask(props) {
   return (
-    <View style={[styles.view, props.style]}>
+    <View style={[styles.view, props.containerStyle]}>
       <View style={styles.infoContainer}>
         <Text style={[styles.text, styles.time]}>{props.time}</Text>
         <Line marginShape={{ left: 5, right: 5 }} />

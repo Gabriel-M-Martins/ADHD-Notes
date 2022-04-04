@@ -12,7 +12,7 @@ function OpenedDailyTask(props) {
   let horario = "";
   let titulo = "";
   let descricao = "";
-  const values = useSelector((state) => state.dailyTask.dailyTasks);
+  const id = useSelector((state) => state.dailyTask.lastKey + 1);
   const dispatch = useDispatch();
 
   return (
@@ -54,6 +54,7 @@ function OpenedDailyTask(props) {
           onPress: () => {
             dispatch(
               addDailyTask({
+                id: id,
                 titulo: titulo,
                 horario: horario,
                 descricao: descricao,
